@@ -1,6 +1,7 @@
 /git
 *.workspace
 dags/**/*.pyc
+dags/*.zip
 plugins/**/*.pyc
 plugins/**/*.whl
 plugins/**/*.tar.gz

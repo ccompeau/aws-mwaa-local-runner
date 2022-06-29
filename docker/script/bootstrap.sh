@@ -27,6 +27,7 @@ adduser -s /bin/bash -d "${AIRFLOW_USER_HOME}" airflow
 
 # Install default providers
 pip3 install $PIP_OPTION apache-airflow-providers-amazon==${PROVIDER_AMAZON_VERSION}
+pip3 install $PIP_OPTION apache-airflow-providers-ssh
 
 # Install watchtower for Cloudwatch logging
 # This has to come after installing apache-airflow-providers-amazon to avoid the

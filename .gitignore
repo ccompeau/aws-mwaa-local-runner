@@ -2,6 +2,8 @@
 *.workspace
 dags/**/*.pyc
 plugins/**/*.pyc
+plugins/**/*.whl
+plugins/**/*.tar.gz
 /.idea
 /logs
 /db-data

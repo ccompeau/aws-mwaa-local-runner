@@ -1,6 +1,7 @@
 /git
 *.workspace
 dags/**/*.pyc
+plugins/**/*.pyc
 /.idea
 /logs
 /db-data

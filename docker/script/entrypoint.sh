@@ -78,6 +78,10 @@ if [ "$AIRFLOW__CORE__EXECUTOR" != "SequentialExecutor" ]; then
   wait_for_port "Postgres" "$POSTGRES_HOST" "$POSTGRES_PORT"
 fi
 
+# bugfix for sqlite version
+# https://airflow.apache.org/docs/apache-airflow/2.2.2/howto/set-up-database.html#setting-up-a-sqlite-database
+# see the "after install" heading
+export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
 
 case "$1" in
   local-runner)

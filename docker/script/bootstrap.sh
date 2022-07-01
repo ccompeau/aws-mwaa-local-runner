@@ -56,6 +56,35 @@ rm $zip_file
 rm -rf ./aws
 cd -  # Return to previous directory
 
+
+# bugfix for sqlite version
+# https://airflow.apache.org/docs/apache-airflow/2.2.2/howto/set-up-database.html#setting-up-a-sqlite-database
+sqlite_installer="sqlite.tar.gz"
+curl "https://www.sqlite.org/src/tarball/sqlite.tar.gz" -o $sqlite_installer
+tar xzf $sqlite_installer
+cd sqlite/
+export CFLAGS="-DSQLITE_ENABLE_FTS3 \
+    -DSQLITE_ENABLE_FTS3_PARENTHESIS \
+    -DSQLITE_ENABLE_FTS4 \
+    -DSQLITE_ENABLE_FTS5 \
+    -DSQLITE_ENABLE_JSON1 \
+    -DSQLITE_ENABLE_LOAD_EXTENSION \
+    -DSQLITE_ENABLE_RTREE \
+    -DSQLITE_ENABLE_STAT4 \
+    -DSQLITE_ENABLE_UPDATE_DELETE_LIMIT \
+    -DSQLITE_SOUNDEX \
+    -DSQLITE_TEMP_STORE=3 \
+    -DSQLITE_USE_URI \
+    -O2 \
+    -fPIC"
+export PREFIX="/usr/local"
+LIBS="-lm" ./configure --disable-tcl --enable-shared --enable-tempstore=always --prefix="$PREFIX"
+make
+make install
+cd -
+
+
+
 # snapshot the packages
 if [ -n "$INDEX_URL" ]
 then

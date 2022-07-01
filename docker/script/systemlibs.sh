@@ -30,6 +30,6 @@ yum install -y nc
 yum install -y python2-cryptography
 
 # Install additional system library dependencies. Provided as a string of libraries separated by space
-if [ -n "${SYSTEM_DEPS}" ]; then yum install -y "${SYSTEM_DEPS}"; fi
+if [ -n "${SYSTEM_DEPS}" ]; then yum install -y ${SYSTEM_DEPS}; fi
 
 yum clean all
